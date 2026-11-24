@@ -1,0 +1,292 @@
+.bars_btn,
+.menu_bars {
+     display: none;
+}
+
+html,
+body {
+     overflow-x: hidden;
+}
+
+.task_box .task {
+     min-width: 0;
+}
+
+@media screen and (max-width: 1200px) {
+     #root {
+          padding: 25px;
+     }
+
+     .information_panel {
+          gap: 15px;
+     }
+
+     .task_box .task {
+          flex: 0 0 calc(50% - 10px);
+     }
+}
+
+@media screen and (max-width: 992px) {
+     .information_panel {
+          flex-wrap: wrap;
+     }
+
+     .information_panel .information {
+          width: calc(50% - 7.5px);
+     }
+
+     .add_members .members_add_box {
+          width: 90%;
+          max-width: 500px;
+          max-height: 90vh;
+          overflow-y: auto;
+     }
+
+     .add_members .members_add_box .addMem form .MemAdd .blok label {
+          flex: 1;
+          min-width: 0;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .navigation_panel_box {
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          column-gap: 15px;
+          row-gap: 0; 
+          border-radius: 20px;
+     }
+
+     .bars_btn,
+     .menu_bars {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.25);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          color: #ffffff;
+          font-size: 20px;
+          cursor: pointer;
+     }
+
+     .bars_btn i {
+          display: inline-block;
+          color: #ffffff;
+          font-size: 20px;
+          pointer-events: none;
+     }
+
+     .navigation_panel_box .navigation_panel {
+          width: 100%;
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          pointer-events: none;
+          transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+     }
+
+     .navigation_panel_box .navigation_panel.activ {
+          max-height: 400px;
+          opacity: 1;
+          margin-top: 15px;
+          pointer-events: all;
+     }
+
+     .navigation_panel_box .navigation_panel ul {
+          flex-direction: column;
+          gap: 10px;
+          padding: 15px;
+          border-radius: 20px;
+          width: 100%;
+     }
+
+     .navigation_panel_box .navigation_panel ul li {
+          width: 100%;
+          text-align: center;
+     }
+
+     .information_panel {
+          flex-direction: column;
+     }
+
+     .information_panel .information {
+          width: 100%;
+     }
+
+     .addMembersOrTask {
+          flex-direction: column;
+     }
+
+     .addMembersOrTask button {
+          width: 100%;
+     }
+
+     .task_box .task {
+          flex: 0 0 100%;
+     }
+
+     .add_task {
+          padding: 15px;
+     }
+
+     .add_task .new_Task_editor,
+     .task_edit_box .edit_task_block {
+          padding: 20px;
+          border-radius: 20px;
+     }
+
+     .add_members .members_add_box {
+          width: calc(100% - 30px);
+          max-width: none;
+          padding: 20px;
+     }
+
+     .add_members .members_add_box .addMem form .MemAdd .blok {
+          flex-direction: column;
+          gap: 12px;
+     }
+
+     .add_members .members_add_box .addMem form .MemAdd .blok.but {
+          flex-direction: row;
+          gap: 10px;
+     }
+
+     .task_box .task {
+          padding: 18px;
+          border-radius: 18px;
+     }
+
+     .task_box .task .vernagir_task {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px 10px;
+          padding-bottom: 14px;
+     }
+
+     .task_box .task .vernagir_task .vernagir {
+          flex: 0 0 100%;
+     }
+
+     .task_box .task .vernagir_task .vernagir h3 {
+          font-size: 18px;
+          line-height: 1.3;
+     }
+
+     .task_box .task .buttom_box {
+          align-items: flex-start;
+          gap: 14px;
+     }
+
+     .task_box .task .buttom_box .chekqontrol {
+          padding-top: 3px;
+     }
+
+     .task_box .task .buttom_box .right {
+          width: 48px;
+          align-self: flex-start;
+     }
+
+     /* Текст задачи + плашки с датами */
+     .task_box .task .buttom_box .left .task-information {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+     }
+
+     .task_box .task .buttom_box .left .task-information .task_info {
+          flex: 0 0 100%;
+          padding: 0 0 4px;
+          font-size: 15px;
+          line-height: 1.5;
+     }
+
+     .task_box .task .buttom_box .left .task-information .Deadline-task p,
+     .task_box .task .buttom_box .left .task-information .Deadline-task_update span {
+          display: inline-block;
+          padding: 4px 10px;
+          border-radius: 8px;
+          background: #f1f3f5;
+          color: #495057;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1.3;
+     }
+
+     .task_box .task .task_editor {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+          margin-top: 16px;
+          padding-top: 16px;
+          border-top: 1px solid #e3e6e8;
+     }
+
+     .task_box .task .task_editor .kojak {
+          width: 100%;
+          gap: 10px;
+     }
+
+     .task_box .task .task_editor button.edition,
+     .task_box .task .task_editor button.del {
+          padding: 11px 12px;
+          border-radius: 10px;
+          text-align: center;
+     }
+
+     .task_box .task .task_editor button.edition {
+          flex: 1;
+     }
+
+     .task_box .task .task_editor button.del {
+          flex: 0 0 56px;
+     }
+}
+
+
+@media screen and (max-width: 480px) {
+     #root {
+          padding: 15px;
+     }
+
+     .navigation_panel_box .navigation_panel ul {
+          padding: 10px;
+          gap: 8px;
+     }
+
+     .navigation_panel_box .navigation_panel ul li {
+          padding: 8px 14px;
+          font-size: 14px;
+     }
+
+     .task_box .task {
+          padding: 16px;
+     }
+
+     .task_box .task .buttom_box {
+          gap: 12px;
+     }
+
+     .task_box .task .buttom_box .right {
+          width: 44px;
+     }
+
+     .task_box .task .task_editor .user_Name {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          max-width: 100%;
+     }
+
+     .Members_list .members_lisst label {
+          gap: 10px;
+     }
+
+     .Members_list .members_lisst label .avatar_box {
+          margin-right: 0;
+     }
+}

@@ -1,0 +1,631 @@
+* {
+     box-sizing: border-box;
+     padding: 0;
+     margin: 0;
+     user-select: none;
+}
+
+body {
+     font-family: sans-serif;
+}
+
+button,
+input[type="checkbox"] {
+     cursor: pointer;
+     font-family: inherit;
+     transition: opacity 0.2s, transform 0.1s;
+     border: none;
+}
+
+button:hover {
+     opacity: 0.88;
+}
+
+button:active {
+     transform: scale(0.97);
+}
+
+input,
+textarea {
+     outline: none;
+     user-select: text;
+     -webkit-user-select: text;
+     border: none;
+}
+
+#root {
+     padding: 35px;
+     min-height: 100vh;
+     /* background: linear-gradient(90deg, rgb(0, 140, 210) 0%, rgba(117, 209, 183, 1) 100%, rgba(138, 138, 138) 50%); */
+}
+
+.fon {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     background: linear-gradient(90deg, rgb(0, 140, 210) 0%, rgba(117, 209, 183, 1) 100%, rgba(138, 138, 138) 50%);
+     z-index: -2;
+}
+
+
+#root .navigation_panel_box {
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-bottom: 10px;
+     border-radius: 100px;
+}
+
+.navigation_panel_box .logo_box .logo {
+     padding: 10px;
+     border-radius: 5px;
+     color: rgb(255, 255, 255);
+     font-weight: 600;
+}
+
+.navigation_panel_box .navigation_panel ul {
+     display: flex;
+     list-style: none;
+     gap: 25px;
+     padding: 10px 30px;
+     border-radius: 100px;
+     border: 1px solid rgba(255, 255, 255, 0.5);
+     background: rgba(255, 255, 255, 0.2);
+     box-shadow: 2px -2px 0px rgba(255, 255, 255, 0.4), 0px 4px 42px 0px rgba(255, 255, 255, 0.3) inset;
+     backdrop-filter: blur(20px);
+}
+
+.navigation_panel_box .navigation_panel ul li {
+     font-weight: 600;
+     cursor: pointer;
+     padding: 10px 20px;
+     border-radius: 100px;
+     transition: 0.5s;
+}
+
+.navigation_panel_box .navigation_panel ul li.activ {
+     width: 100%;
+     transition: 0.5s;
+     color: rgb(255, 255, 255);
+     background: rgb(9, 181, 147);
+}
+
+.information_panel {
+     padding: 30px 0;
+     display: flex;
+     gap: 20px;
+}
+
+.information_panel .information {
+     width: 25%;
+     padding: 15px;
+     border-radius: 25px;
+     border: 1px solid rgba(255, 255, 255, 0.5);
+     background: rgba(255, 255, 255, 0.2);
+     box-shadow: 2px -2px 0px rgba(255, 255, 255, 0.4), 0px 4px 42px 0px rgba(255, 255, 255, 0.3) inset;
+     backdrop-filter: blur(20px);
+     display: flex;
+}
+
+.information_panel .information .indekator_info-logo {
+     width: 30%;
+}
+
+.information_panel .information .indekator_info-logo .logo_status {
+     width: 100%;
+     border-radius: 25px;
+     background: #ffffff;
+     overflow: hidden;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0px 0 5px rgb(117, 117, 117);
+}
+
+.information_panel .information .indekator_info-logo .logo_status img {
+     width: 100%;
+     height: auto;
+     display: block;
+}
+
+.information_panel .information .indekator {
+     width: 70%;
+     padding: 0 10px;
+     display: flex;
+     align-items: center;
+}
+
+.information_panel .information .indekator .indikator_text {
+     width: 100%;
+     padding: 0 10px;
+}
+
+.addMembersOrTask {
+     padding: 20px 0;
+     text-align: right;
+     display: flex;
+     justify-content: flex-end;
+     gap: 10px;
+}
+
+.addMembersOrTask button {
+     padding: 10px 15px;
+     border-radius: 5px;
+     color: rgb(255, 255, 255);
+     background: rgb(0, 96, 223);
+     font-weight: 600;
+}
+
+.task_box {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 20px;
+}
+
+.task_box .task {
+     flex: 0 0 calc(33.333% - 13.333px);
+     background: rgb(255, 255, 255);
+     border-radius: 20px;
+     padding: 20px;
+     box-shadow: 4px 4px 4px rgb(4, 147, 154);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+}
+
+.task_box .task .vernagir_task {
+     padding-bottom: 12px;
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     gap: 10px;
+}
+
+.task_box .task .vernagir_task .vernagir {
+     flex: 1;
+     min-width: 0;
+}
+
+.task_box .task .vernagir_task .vernagir h3 {
+     font-size: 16px;
+     font-weight: 700;
+     word-break: break-word;
+}
+
+.task_box .task .vernagir_task .task-meta {
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     font-size: 13px;
+     font-weight: 600;
+     flex-shrink: 0;
+}
+
+.task_box .task .vernagir_task .task-ID span {
+     color: #6c757d;
+}
+
+.task_box .task .vernagir_task .status-task span {
+     text-transform: capitalize;
+     padding: 2px 8px;
+     border-radius: 6px;
+     background: #e9ecef;
+     color: #495057;
+     font-size: 12px;
+}
+
+.task_box .task .buttom_box {
+     display: flex;
+     gap: 10px;
+}
+
+.task_box .task .buttom_box .left {
+     flex: 1;
+     min-width: 0;
+}
+
+.task_box .task .buttom_box .chekqontrol {
+     align-content: center;
+}
+
+.task_box .task .buttom_box .chekqontrol .task_status_edit {
+     align-content: center;
+     width: 20px;
+     height: 20px;
+}
+
+
+.task_box .task .buttom_box .left .task-information .task_info {
+     padding: 10px 0;
+     word-break: break-word;
+}
+
+.task_box .task .buttom_box .right {
+     width: 60px;
+     flex-shrink: 0;
+}
+
+.task_box .task .buttom_box .right .task_members_blok {
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.task_box .task .buttom_box .right .task_members_blok .img_members {
+     width: 100%;
+     aspect-ratio: 1 / 1;
+     border-radius: 50%;
+     background: grey;
+     object-fit: cover;
+     object-position: center;
+}
+
+.task_box .task .task_editor {
+     padding-top: 15px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-top: 2px solid #cecece;
+     margin-top: 15px;
+}
+
+.task_box .task .task_editor .user_Name {
+     max-width: 150px;
+     word-wrap: break-word;
+
+}
+
+.task_box .task .task_editor .user_Name span {
+     font-size: 12px;
+     font-weight: 800;
+     display: block;
+}
+
+.task_box .task .task_editor .kojak {
+     display: flex;
+     gap: 8px;
+}
+
+.task_box .task .task_editor button.edition,
+.task_box .task .task_editor button.del {
+     font-size: 14px;
+     font-weight: 800;
+     border-radius: 5px;
+     color: rgb(255, 255, 255);
+     background: rgb(0, 96, 223);
+     padding: 6px 16px;
+}
+
+.task_box .task .task_editor button.del {
+     background: rgb(220, 53, 69);
+}
+
+.add_task {
+     width: 100%;
+     height: 100%;
+     background: rgb(248, 204, 204);
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 100;
+     padding: 20px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+     transition: opacity 0.3s, visibility 0.3s;
+     overflow-y: auto;
+}
+
+.add_task.activ {
+     opacity: 1;
+     visibility: visible;
+     pointer-events: all;
+}
+
+.add_task .new_Task_editor {
+     width: 100%;
+     max-width: 500px;
+     background: rgb(255, 255, 255);
+     border-radius: 20px;
+     padding: 30px;
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+     max-height: 90vh;
+     overflow-y: auto;
+}
+
+.add_task .new_Task_editor .vernagir h1,
+.add_task .new_Task_editor .vernagir h3 {
+     font-size: 24px;
+     margin-bottom: 20px;
+}
+
+.task_edit_box {
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.4);
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 100;
+     padding: 20px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+     transition: opacity 0.3s, visibility 0.3s;
+     overflow-y: auto;
+}
+
+.task_edit_box.activ {
+     opacity: 1;
+     visibility: visible;
+     pointer-events: all;
+}
+
+.task_edit_box .edit_task_block {
+     width: 100%;
+     max-width: 500px;
+     background: rgb(255, 255, 255);
+     border-radius: 20px;
+     padding: 30px;
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+     max-height: 90vh;
+     overflow-y: auto;
+}
+
+.task_edit_box .edit_task_block .vernagir h1,
+.task_edit_box .edit_task_block .vernagir h3 {
+     font-size: 24px;
+     margin-bottom: 20px;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task,
+.task_edit_box .edit_task_block .task_creat form .creat_task {
+     margin-bottom: 15px;
+     position: relative;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task label,
+.task_edit_box .edit_task_block .task_creat form .creat_task label {
+     display: block;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task label p,
+.task_edit_box .edit_task_block .task_creat form .creat_task label p {
+     padding-bottom: 8px;
+     font-weight: 600;
+     font-size: 14px;
+     color: #333;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task label input,
+.task_edit_box .edit_task_block .task_creat form .creat_task label input {
+     border-radius: 10px;
+     width: 100%;
+     padding: 12px 15px;
+     background: rgb(240, 230, 230);
+     font-size: 14px;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task.editin,
+.task_edit_box .edit_task_block .task_creat form .creat_task.editin {
+     display: block;
+     position: relative;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task.editin label .userName_blok,
+.task_edit_box .edit_task_block .task_creat form .creat_task.editin label .userName_blok {
+     background: rgb(255, 198, 198);
+     width: 100%;
+     padding: 10px 15px;
+     color: rgb(88, 76, 76);
+     font-weight: 600;
+     border-radius: 15px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task.editin label .userName_blok button.kojMem,
+.task_edit_box .edit_task_block .task_creat form .creat_task.editin label .userName_blok button.kojMem {
+     border: none;
+     border-radius: 10px;
+     padding: 8px 16px;
+     background: rgb(177, 168, 168);
+     color: #333;
+     font-weight: 600;
+     transition: 0.3s;
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task.editin label .userName_blok button.kojMem.activ,
+.task_edit_box .edit_task_block .task_creat form .creat_task.editin label .userName_blok button.kojMem.activ {
+     background: rgb(0, 96, 223);
+     color: rgb(255, 255, 255);
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task label .Members_list,
+.task_edit_box .edit_task_block .task_creat form .creat_task label .Members_list {
+     position: absolute;
+     top: calc(100% + 5px);
+     left: 0;
+     width: 100%;
+     max-height: 0;
+     overflow: hidden;
+     overflow-y: auto;
+     background: rgb(88, 76, 76);
+     border-radius: 15px;
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     padding: 0;
+     z-index: 999;
+     opacity: 0;
+     pointer-events: none;
+     transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.add_task .new_Task_editor .task_creat form .creat_task label .Members_list.activ,
+.task_edit_box .edit_task_block .task_creat form .creat_task label .Members_list.activ {
+     max-height: 200px;
+     opacity: 1;
+     pointer-events: all;
+     padding: 12px;
+}
+
+.Members_list .members_lisst {
+     padding: 8px 12px;
+     border-radius: 12px;
+     transition: background 0.2s;
+}
+
+.Members_list .members_lisst.activ {
+     background: rgb(255, 255, 255);
+}
+
+.Members_list .members_lisst label {
+     display: flex !important;
+     align-items: center;
+     cursor: pointer;
+     width: 100%;
+     padding: 0;
+}
+
+.Members_list .members_lisst label input[type="checkbox"] {
+     width: auto !important;
+     margin-right: 10px;
+}
+
+.Members_list .members_lisst label p {
+     padding: 0 !important;
+     color: rgb(255, 255, 255) !important;
+     font-weight: 500;
+}
+
+.Members_list .members_lisst label p.activ {
+     color: rgb(88, 76, 76) !important;
+     font-weight: 600;
+}
+
+.Members_list .members_lisst label .avatar_box {
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     background: grey;
+     margin-right: 12px;
+     flex-shrink: 0;
+}
+
+.add_task .new_Task_editor .task_creat .creat_task.tekst_area textarea,
+.task_edit_box .edit_task_block .task_creat .creat_task.tekst_area textarea {
+     padding: 15px;
+     border-radius: 10px;
+     width: 100%;
+     height: 120px;
+     background: rgb(240, 230, 230);
+     font-family: sans-serif;
+     resize: none;
+     font-size: 14px;
+}
+
+.add_task .new_Task_editor .task_creat .button_box,
+.task_edit_box .edit_task_block .task_creat .button_box {
+     display: flex;
+     gap: 10px;
+     margin-top: 20px;
+}
+
+.add_task .new_Task_editor .task_creat .button_box button,
+.task_edit_box .edit_task_block .task_creat .button_box button {
+     flex: 1;
+     padding: 12px;
+     font-weight: 700;
+     border-radius: 10px;
+     background: rgb(0, 96, 223);
+     color: rgb(255, 255, 255);
+}
+
+.add_task .new_Task_editor .task_creat .button_box button:last-child,
+.task_edit_box .edit_task_block .task_creat .button_box button:last-child {
+     background: rgb(108, 117, 125);
+}
+
+.add_members {
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 100;
+     background: rgb(255, 198, 198);
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+     user-select: none;
+     transition: 0.3s;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.add_members.activ {
+     opacity: 1;
+     visibility: visible;
+     pointer-events: all;
+}
+
+.add_members .members_add_box {
+     width: fit-content;
+     height: fit-content;
+     padding: 25px;
+     background: rgb(255, 255, 255);
+     border-radius: 20px;
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.add_members .members_add_box .addMem {
+     padding: 15px 0;
+}
+
+.add_members .members_add_box .addMem form .MemAdd .blok {
+     padding: 10px 0;
+     display: flex;
+     gap: 20px;
+}
+
+.add_members .members_add_box .addMem form .MemAdd .blok.but {
+     gap: 10px;
+     justify-content: center;
+}
+
+.add_members .members_add_box .addMem form .MemAdd .blok.but button {
+     padding: 10px 15px;
+     border-radius: 5px;
+     color: rgb(255, 255, 255);
+     background: rgb(0, 96, 223);
+     font-weight: 600;
+}
+
+.add_members .members_add_box .addMem form .MemAdd .blok label input {
+     border-radius: 10px;
+     width: 100%;
+     padding: 12px 15px;
+     background: rgb(240, 230, 230);
+     font-size: 14px;
+}
+
+.add_members .members_add_box .addMem form .MemAdd .blok label p {
+     padding-bottom: 8px;
+     font-weight: 600;
+     font-size: 14px;
+     color: #333;
+}

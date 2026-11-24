@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="media.css">
+</head>
+
+<body>
+     <div class="fon">
+          
+     </div>
+     <div id="root">
+          <div class="navigation_panel_box">
+               <div class="logo_box">
+                    <div class="logo">
+                         <p>To-Do-task</p>
+                    </div>
+               </div>
+               <button type="button" class="bars_btn" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+               </button>
+               <div class="navigation_panel">
+                    <ul>
+                         <li class="vijakElem activ" elemStatus="Total">Total</li>
+                         <li class="vijakElem" elemStatus="Active">Active</li>
+                         <li class="vijakElem" elemStatus="Completed">Completed</li>
+                         <li class="vijakElem" elemStatus="Overdue">Overdue</li>
+                    </ul>
+               </div>
+          </div>
+
+          <div class="information_panel">
+               <div class="information">
+                    <div class="indekator_info-logo">
+                         <div class="logo_status">
+                              <img src="img/icon total.png" alt="">
+                         </div>
+                    </div>
+                    <div class="indekator">
+                         <div class="indikator_text">
+                              <h1 class="totalShot" name="Total">0</h1>
+                              <p>Total</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="information">
+                    <div class="indekator_info-logo">
+                         <div class="logo_status">
+                              <img src="img/icon activ.png" alt="">
+                         </div>
+                    </div>
+                    <div class="indekator">
+                         <div class="indikator_text">
+                              <h1 class="activeShot" name="Active">0</h1>
+                              <p>Active</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="information">
+                    <div class="indekator_info-logo">
+                         <div class="logo_status">
+                              <img src="img/icon computed.png" alt="">
+                         </div>
+                    </div>
+                    <div class="indekator">
+                         <div class="indikator_text">
+                              <h1 class="completadShot" name="Completed">0</h1>
+                              <p>Completed</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="information">
+                    <div class="indekator_info-logo">
+                         <div class="logo_status">
+                              <img src="img/icon oeverdue.png." alt="">
+                         </div>
+                    </div>
+                    <div class="indekator">
+                         <div class="indikator_text">
+                              <h1 class="overdueShot" name="Overdue">0</h1>
+                              <p>Overdue</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="addMembersOrTask">
+               <button data-typeAdd="AddMembers" className="add_members">Add Members +</button>
+               <button data-typeAdd="AddTask" className="add_task">Add Task +</button>
+          </div>
+          <div class="task_box"></div>
+
+
+          <div class="add_task">
+               <div class="new_Task_editor">
+                    <div class="vernagir">
+                         <h3>Creat New Task</h3>
+                    </div>
+                    <div class="task_creat">
+                         <form action="">
+                              <div class="creat_task">
+                                   <label for="">
+                                        <p>*Task Name</p>
+                                        <input type="text">
+                                   </label>
+                                   <label for="">
+                                        <p>*Dedline</p>
+                                        <input type="date">
+                                   </label>
+                              </div>
+                              <div class="creat_task editin">
+                                   <label for="">
+                                        <p>*Task Developers</p>
+                                        <div class="userName_blok">
+                                             <button class="kojMem" type="button" vijak="false"
+                                                  onclick="members_cucak(`addTask`)">Members +</button>
+                                             <span class="members_span"></span>
+                                        </div>
+                                        <div class="Members_list add" attr="addTask"></div>
+                                   </label>
+                              </div>
+                              <div class="creat_task tekst_area">
+                                   <label for="">
+                                        <p>*Task</p>
+                                        <textarea name="" id=""></textarea>
+                                   </label>
+                              </div>
+                              <div class="button_box">
+                                   <button type="button" buttonfunction="Save">Save</button>
+                                   <button type="button" buttonfunction="Close" noActiv="add_task">Close</button>
+                              </div>
+                         </form>
+                    </div>
+               </div>
+          </div>
+
+
+
+
+
+
+          <div class="add_members">
+               <div class="members_add_box">
+                    <div class="vernagir">
+                         <h3>Add Members</h3>
+                    </div>
+                    <div class="addMem">
+                         <form action="">
+                              <div class="MemAdd">
+                                   <div class="blok">
+                                        <label for="">
+                                             <p>*Members First Name</p>
+                                             <input type="text">
+                                        </label>
+                                        <label for="">
+                                             <p>Mmmbers Last Name</p>
+                                             <input type="text">
+                                        </label>
+                                   </div>
+                                   <div class="blok">
+                                        <label for="">
+                                             <p>*Members Email</p>
+                                             <input type="email">
+                                        </label>
+                                        <label for="">
+                                             <p>*Mwmbwrs phone</p>
+                                             <input type="tel">
+                                        </label>
+                                   </div>
+                                   <div class="blok but">
+                                        <button type="button" buttonfunction="Save">Save</button>
+                                        <button type="button" buttonfunction="Close"
+                                             noActiv="add_members">Close</button>
+                                   </div>
+                              </div>
+                         </form>
+                    </div>
+               </div>
+          </div>
+
+
+
+          <div class="task_edit_box">
+               <div class="edit_task_block">
+                    <div class="vernagir">
+                         <h1>Edit Task</h1>
+                    </div>
+                    <div class="task_creat">
+                         <form action="">
+                              <div class="creat_task">
+                                   <label for="">
+                                        <p>*Task Name</p>
+                                        <input type="text" name="taskName">
+                                   </label>
+                                   <label for="">
+                                        <p>*Dedline</p>
+                                        <input type="date" name="dedline_tim">
+                                   </label>
+                              </div>
+                              <div class="creat_task editin">
+                                   <label for="">
+                                        <p>*Task Developers</p>
+                                        <div class="userName_blok">
+                                             <button class="kojMem" type="button" vijak="false"
+                                                  onclick="members_cucak(`creat_task`)">Members +</button>
+                                             <span class="members_span"></span>
+                                        </div>
+                                        <div class="Members_list edit" attr="creat_task"></div>
+                                   </label>
+                              </div>
+                              <div class="creat_task tekst_area">
+                                   <label for="">
+                                        <p>*Task</p>
+                                        <textarea name="task" id=""></textarea>
+                                   </label>
+                              </div>
+                              <div class="button_box">
+                                   <button type="button">Save</button>
+                                   <button type="button" buttonfunction="Close" noActiv="task_edit_box">Close</button>
+                              </div>
+                         </form>
+                    </div>
+               </div>
+          </div>
+     <script src="app.js"></script>
+</body>
+
+</html>
