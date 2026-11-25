@@ -374,7 +374,7 @@ function taskCreator(taskObject = [], main = taskBox) {
                                         <p>${item.task}</p>
                                    </div>
                                    <div class="Deadline-task">
-                                        <p>Deadline -${item.Deadline}</p>
+                                        <p>Deadline - ${item.Deadline}</p>
                                    </div>
                                    <div class="Deadline-task_update">
                                         ${updateSpan}
@@ -392,7 +392,7 @@ function taskCreator(taskObject = [], main = taskBox) {
                               ${developersHTML}
                          </div>
                          <div class="kojak">
-                              <button class="edition" cartId="${item.id}" className="task_edit_box" data-type="Edit">Edit</button>
+                              <button class="edition" cartId="${item.id}" className="task_edit_box" data-typeNew="Edit">Edit</button>
                               <button class="del" data-type="Delete" cartId="${item.id}"><i class="fa-solid fa-trash"></i></button>
                          </div>
                     </div>
@@ -438,11 +438,20 @@ function eventMeneger(data, main) {
         }
     });
 
-    const buttAdd = document.querySelectorAll(`button[data-typeAdd]`)
-    buttAdd.forEach(button => {
+    const buttonNewWindow = document.querySelectorAll(`button[data-typeNew]`)
+    buttonNewWindow.forEach(button => {
         button.onclick = function () {
-            const classElem = `.` + event.currentTarget.getAttribute(`className`)
-            addWindow(classElem, data)
+            const elemName = `.` + event.currentTarget.getAttribute(`className`)
+            const attr = event.currentTarget.getAttribute(`data-typeNew`)
+            if (attr == `Edit`) {
+                editTask(event.currentTarget.getAttribute(`cartid`), data)
+            } else if (attr == `AddMembers`) {
+                const elem = document.querySelector(elemName)
+                toggleModal(elem, members)
+                return
+            }
+            const elem = document.querySelector(elemName)
+            toggleModal(elem, data)
         }
     })
 
@@ -457,9 +466,17 @@ function eventMeneger(data, main) {
                 task.taskStatus = `Active`
             }
             taskCreator(data);
-            console.log(vijakElem)
             const status = [...vijakElem].find(elem => elem.classList.contains(`activ`))
             generator(status.getAttribute(`elemstatus`))
+        }
+    })
+
+    const clouseWindow = document.querySelectorAll(`button[buttonfunction=Close]`)
+    clouseWindow.forEach(button => {
+        button.onclick = function () {
+            const elemName = event.currentTarget.getAttribute(`noactiv`)
+            const elem = document.querySelector(`.${elemName}`)
+            toggleModal(elem, data)
         }
     })
     const Totlal = 0
@@ -489,8 +506,6 @@ function generator(status = "Total", main) {
 }
 
 function editTask(ID, data) {
-    const editWindow = document.querySelector(`.task_edit_box`);
-    editWindow.classList.add(`activ`);
     const input = document.querySelectorAll(`.task_edit_box .edit_task_block .task_creat form .creat_task input[name], .task_edit_box .edit_task_block .task_creat form .creat_task textarea[name]`);
     const task = data.find(task => {
         return task.id == ID;
@@ -503,14 +518,7 @@ function editTask(ID, data) {
     });
 }
 
-const clouseWindow = document.querySelectorAll(`button[buttonfunction=Close]`)
-clouseWindow.forEach(button => {
-    button.onclick = function () {
-        const buttonClass = `.` + event.currentTarget.getAttribute(`noActiv`)
-        document.querySelector(buttonClass).classList.remove(`activ`)
 
-    }
-})
 
 function taskStat(taskId, data) {
     const chek = document.querySelectorAll(`.task_status_edit`)
@@ -521,12 +529,6 @@ function taskStat(taskId, data) {
         }
     })
 }
-
-
-    function addWindow(classElem, data) {
-        document.querySelector(classElem).classList.add(`activ`)
-    }
-
 
 function members_cucak(payman) {
     const status = event.currentTarget?.getAttribute(`vijak`)
@@ -554,18 +556,18 @@ function task_developer() {
     if (chek.checked) {
         box.classList?.add("activ");
         text.classList?.add(`activ`)
-    }else{
+    } else {
         box.classList?.remove("activ");
         text.classList?.remove(`activ`)
     }
-}   
+}
 
-function saveMembers() {
-    
+function saveMembers(myform) {
+
 }
 
 function saveTask() {
-    
+
 }
 
 
@@ -593,4 +595,8 @@ if (barsBtn && navPanel) {
             }
         });
     });
+}
+
+function toggleModal(modal, data) {
+    modal?.classList.toggle("activ")
 }
