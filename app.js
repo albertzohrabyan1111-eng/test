@@ -18,7 +18,7 @@ if (dey.length <= 1) {
     dey = `0` + date.getDay()
 }
 let conc = `${year}-${mounth}-${dey}`
-
+let elemEditId = 0;
 const members = [
     {
         userID: 1,
@@ -423,13 +423,6 @@ function eventMeneger(data, main) {
         };
     });
 
-    editButton.forEach(button => {
-        const clikButt = button.onclick = function () {
-            const userId = parseInt(event.currentTarget.getAttribute(`cartId`));
-            editTask(userId, data);
-        }
-    });
-
     deleteButton.forEach(button => {
         button.onclick = function () {
             const userId = parseInt(event.currentTarget.getAttribute(`cartId`));
@@ -444,7 +437,9 @@ function eventMeneger(data, main) {
             const elemName = `.` + event.currentTarget.getAttribute(`className`)
             const attr = event.currentTarget.getAttribute(`data-typeNew`)
             if (attr == `Edit`) {
-                editTask(event.currentTarget.getAttribute(`cartid`), data)
+                const Id = event.currentTarget.getAttribute(`cartid`)
+                elemEditId = Id
+                editTask(Id, data)
             } else if (attr == `AddMembers`) {
                 const elem = document.querySelector(elemName)
                 toggleModal(elem, members)
@@ -453,6 +448,13 @@ function eventMeneger(data, main) {
             const elem = document.querySelector(elemName)
             toggleModal(elem, data)
         }
+    })
+
+    const saveArry = document.querySelectorAll(`button[buttonfunction="Save"]`)
+    saveArry.forEach(button => {
+        button.addEventListener("click", function () {
+            SaveMenager(data)
+        })
     })
 
     chek.forEach(chekbox => {
@@ -476,6 +478,7 @@ function eventMeneger(data, main) {
         button.onclick = function () {
             const elemName = event.currentTarget.getAttribute(`noactiv`)
             const elem = document.querySelector(`.${elemName}`)
+            elem.querySelector(`form`).reset()
             toggleModal(elem, data)
         }
     })
@@ -561,20 +564,8 @@ function task_developer() {
         text.classList?.remove(`activ`)
     }
 }
-
-function saveMembers(myform) {
-
-}
-
-function saveTask() {
-
-}
-
-
-
 const barsBtn = document.querySelector(`.bars_btn`);
 const navPanel = document.querySelector(`.navigation_panel`);
-
 if (barsBtn && navPanel) {
     barsBtn.addEventListener(`click`, () => {
         navPanel.classList.toggle(`activ`);
@@ -603,5 +594,11 @@ function toggleModal(modal, data) {
 
 
 function SaveMenager(data) {
-    
+    const pay = event.currentTarget.getAttribute(`pay`)
+    console.log(pay)
+    if (pay === `Edit`) {
+        const elem = document.querySelectorAll(`.task_edit_box form input, .task_edit_box form textarea`)
+        elem.forEach(ElemValue => )
+        
+    }
 }
