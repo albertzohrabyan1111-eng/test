@@ -3,12 +3,12 @@ const borderHeight = innerHeight;
 root.style.minHeight = `${borderHeight}px`;
 const taskBox = document.querySelector(`.task_box`)
 const rezrevDeleteId = []
-const date = new Date()
-const year = date.getFullYear()
 const totalShot = document.querySelector(`.totalShot`)
 const activeShot = document.querySelector(`.activeShot`)
 const completadShot = document.querySelector(`.completadShot`)
 const overdueShot = document.querySelector(`.overdueShot`)
+const date = new Date()
+const year = date.getFullYear()
 let mounth = date.getMonth() + 1 + ``
 if (mounth.length < 1) {
     mounth = `0` + date.getMonth()
@@ -599,4 +599,9 @@ if (barsBtn && navPanel) {
 
 function toggleModal(modal, data) {
     modal?.classList.toggle("activ")
+}
+
+
+function SaveMenager(data) {
+    
 }
