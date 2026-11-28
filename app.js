@@ -7,17 +7,6 @@ const totalShot = document.querySelector(`.totalShot`)
 const activeShot = document.querySelector(`.activeShot`)
 const completadShot = document.querySelector(`.completadShot`)
 const overdueShot = document.querySelector(`.overdueShot`)
-const date = new Date()
-const year = date.getFullYear()
-let mounth = date.getMonth() + 1 + ``
-if (mounth.length < 1) {
-    mounth = `0` + date.getMonth()
-}
-let dey = date.getDay() + ``
-if (dey.length <= 1) {
-    dey = `0` + date.getDay()
-}
-let conc = `${year}-${mounth}-${dey}`
 let elemEditId = 0;
 const members = [
     {
@@ -185,7 +174,6 @@ const taskContainer = [
     {
         id: 1,
         taskName: "UI/UX Design",
-        Deadline: "11.11.2026",
         Deadline_tim: "2026-11-11",
         uptade: null,
         task: "Ստեղծել գլխավոր էջի դիզայնը և նախատիպը (wireframe)",
@@ -196,7 +184,6 @@ const taskContainer = [
     {
         id: 2,
         taskName: "Frontend Development",
-        Deadline: "15.11.2026",
         Deadline_tim: "2026-11-15",
         uptade: "12.11.2026",
         task: "Իրականացնել ռեսպոնսիվ մենյուի և գլխավոր բաժնի կոդավորումը",
@@ -207,7 +194,6 @@ const taskContainer = [
     {
         id: 3,
         taskName: "Backend API",
-        Deadline: "18.11.2026",
         Deadline_tim: "2026-11-18",
         uptade: null,
         task: "Մշակել օգտատերերի գրանցման և մուտքի (Auth) API-ները",
@@ -218,7 +204,6 @@ const taskContainer = [
     {
         id: 4,
         taskName: "Database Architecture",
-        Deadline: "20.11.2026",
         Deadline_tim: "2026-11-20",
         uptade: "14.11.2026",
         task: "Նախագծել տվյալների բազայի աղյուսակները և կապերը",
@@ -229,7 +214,6 @@ const taskContainer = [
     {
         id: 5,
         taskName: "QA Testing",
-        Deadline: "22.11.2026",
         Deadline_tim: "2026-11-22",
         uptade: null,
         task: "Ստուգել գրանցման ֆորմայի վալիդացիաները և ուղղել սխալները",
@@ -240,7 +224,6 @@ const taskContainer = [
     {
         id: 6,
         taskName: "Payment Integration",
-        Deadline: "25.11.2026",
         Deadline_tim: "2026-11-25",
         uptade: "16.11.2026",
         task: "Կցել առցանց վճարային համակարգը (Idram / ArCa)",
@@ -251,7 +234,6 @@ const taskContainer = [
     {
         id: 7,
         taskName: "SEO Optimization",
-        Deadline: "28.11.2026",
         Deadline_tim: "2026-11-28",
         uptade: null,
         task: "Ավելացնել մետա թեգերը և օպտիմալացնել նկարների չափսերը",
@@ -262,7 +244,6 @@ const taskContainer = [
     {
         id: 8,
         taskName: "Mobile Adaptation",
-        Deadline: "01.12.2026",
         Deadline_tim: "2026-12-01",
         uptade: "20.11.2026",
         task: "Հարմարեցնել կայքը բջջային հեռախոսների և պլանշետների համար",
@@ -273,18 +254,16 @@ const taskContainer = [
     {
         id: 9,
         taskName: "Security Audit",
-        Deadline: "05.12.2026",
         Deadline_tim: "2026-12-05",
         uptade: null,
         task: "Ստուգել համակարգի անվտանգությունը SQL injection-ներից",
-        taskStatus: "Overdue",
+        taskStatus: "Active",
         avatar: null,
         membersId: [11]
     },
     {
         id: 10,
         taskName: "Deployment",
-        Deadline: "10.12.2026",
         Deadline_tim: "2026-12-10",
         uptade: null,
         task: "Տեղադրել նախագիծը հիմնական սերվերի վրա (Production)",
@@ -293,6 +272,7 @@ const taskContainer = [
         membersId: [7, 13]
     }
 ];
+
 
 
 
@@ -327,10 +307,6 @@ function taskCreator(taskObject = [], main = taskBox) {
         return;
     }
     const newTaskFilter = taskObject.filter(task => !rezrevDeleteId.includes(task.id))
-    const dataFilter = newTaskFilter.filter(task => {
-        const dat = task.Deadline_tim
-        const dat2 = dat.split("-")
-    })
     if (!Array.isArray(newTaskFilter) || newTaskFilter.length < 1) {
         main.innerHTML = "<h1>No data available</h1>";
         return;
@@ -351,6 +327,31 @@ function taskCreator(taskObject = [], main = taskBox) {
         if (item.uptade != null) {
             updateSpan = `<span>Update - ${item.uptade}</span>`
         }
+        getTodayFormatted(newTaskFilter)
+        function getTodayFormatted(arreyData) {
+            const date = new Date()
+            const dateMIL = date.getTime()
+            const funkJam = arreyData.map(elem => {
+                const dateDedliene = new Date(elem.Deadline_tim)
+                const dedlineMIL = dateDedliene.getTime()
+                if (dedlineMIL < dateMIL && elem.taskStatus === `Active`) {
+                    elem.taskStatus = `Overdue`
+                } else if (dedlineMIL > dateMIL && elem.taskStatus === `Overdue`) {
+                    elem.taskStatus = `Active`
+                }
+            });
+        }
+        const ded = new Date(item.Deadline_tim)
+        let dedDay = ded.getDate() + ``
+        if (dedDay.length === 1) {
+            dedDay = `0` + dedDay
+        }
+        let dedMounth = ded.getMonth() + 1 + ``
+        if (dedMounth.length === 1) {
+            dedMounth = `0` + dedMounth
+        }
+        const dedYear = ded.getFullYear()
+        const dedline = `${dedDay}-${dedMounth}-${dedYear}`
         main.innerHTML += `
                <div class="task">
                     <div class="vernagir_task">
@@ -374,7 +375,7 @@ function taskCreator(taskObject = [], main = taskBox) {
                                         <p>${item.task}</p>
                                    </div>
                                    <div class="Deadline-task">
-                                        <p>Deadline - ${item.Deadline}</p>
+                                        <p>Deadline - ${dedline}</p>
                                    </div>
                                    <div class="Deadline-task_update">
                                         ${updateSpan}
@@ -442,20 +443,15 @@ function eventMeneger(data, main) {
                 editTask(Id, data)
             } else if (attr == `AddMembers`) {
                 const elem = document.querySelector(elemName)
-                toggleModal(elem, members)
+                toggleModal(elem, members, attr)
                 return
             }
             const elem = document.querySelector(elemName)
-            toggleModal(elem, data)
+            toggleModal(elem, data, attr)
         }
     })
 
-    const saveArry = document.querySelectorAll(`button[buttonfunction="Save"]`)
-    saveArry.forEach(button => {
-        button.addEventListener("click", function () {
-            SaveMenager(data)
-        })
-    })
+
 
     chek.forEach(chekbox => {
         chekbox.onclick = function () {
@@ -482,10 +478,6 @@ function eventMeneger(data, main) {
             toggleModal(elem, data)
         }
     })
-    const Totlal = 0
-    const Active = 0
-    const Completed = 0
-    const Overdue = 0
 }
 taskCreator(taskContainer);
 
@@ -520,8 +512,6 @@ function editTask(ID, data) {
         }
     });
 }
-
-
 
 function taskStat(taskId, data) {
     const chek = document.querySelectorAll(`.task_status_edit`)
@@ -589,16 +579,69 @@ if (barsBtn && navPanel) {
 }
 
 function toggleModal(modal, data) {
-    modal?.classList.toggle("activ")
+    modal?.classList.toggle("activ");
+    document.querySelector("html")?.classList.toggle("activ");
+
+    const saveArry = modal?.querySelectorAll('button[buttonfunction="Save"]');
+    saveArry?.forEach(button => {
+        button.onclick = function () {
+            SaveMenager(data, modal);
+        };
+    });
 }
 
 
-function SaveMenager(data) {
-    const pay = event.currentTarget.getAttribute(`pay`)
-    console.log(pay)
+function SaveMenager(data, item) {
+    const pay = event?.currentTarget?.getAttribute(`pay`)
+    const input = Array.from(item.querySelectorAll(`form input, form textarea`))
     if (pay === `Edit`) {
-        const elem = document.querySelectorAll(`.task_edit_box form input, .task_edit_box form textarea`)
-        elem.forEach(ElemValue => )
+        const element = data.find(elem => elem.id === parseInt(elemEditId))
+        for (const key in element) {
+            for (const ele of input) {
+                if (key === ele.name) {
+                    if (ele.value === "") {
+                        alert(`xndrum enq lracreq bolor toxer`)
+                        return
+                    }
+                    element[key] = ele.value
+                }
+            }
+        }
+        const update = new Date()
+        let d = update.getDate() + ``
+        if (d.length === 1) {
+            d = `0` + d
+        }
+        let m = update.getMonth() + 1 + ``
+        if (m.length === 1) {
+            m = `0` + m
+        }
+        const y = update.getFullYear() + ``
+        element.uptade = `${d}-${m}-${y}`
+        taskCreator(data)
+    } else if (pay === `members`) {
+        const getVal = name => input.find(el => el.name === name)?.value || "";
+        const newMembers = {
+            userID: members.length + 1,
+            userFirsName: getVal(`userFirsName`),
+            userLastName: getVal(`userLastName`),
+            avatar: null,
+            userEmail: getVal(`userEmail`),
+            userPhon: getVal(`userPhon`)
+        }
+        for (const stugum in newMembers) {
+            if (newMembers[stugum] === "") {
+                alert(`xndrum enq lracreq bolor toxer`)
+                return
+            }
+        }
+        members.push(newMembers)
+        members_Creator(members)
+        item?.querySelector(`form`)?.reset()
+    } else if (pay === "task") {
         
+        item?.querySelector(`form`)?.reset()
     }
+    item?.classList?.remove("activ")
+    document.querySelector(`html`)?.classList?.remove("activ")
 }

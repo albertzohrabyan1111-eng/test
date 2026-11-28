@@ -9,6 +9,10 @@ body {
      font-family: sans-serif;
 }
 
+html.activ {
+     overflow: hidden;
+}
+
 button,
 input[type="checkbox"] {
      cursor: pointer;
