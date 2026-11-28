@@ -140,6 +140,7 @@ textarea {
      padding: 0 10px;
      display: flex;
      align-items: center;
+     color: rgb(190, 110, 30);
 }
 
 .information_panel .information .indekator .indikator_text {

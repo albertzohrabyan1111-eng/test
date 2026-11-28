@@ -8,6 +8,14 @@ const activeShot = document.querySelector(`.activeShot`)
 const completadShot = document.querySelector(`.completadShot`)
 const overdueShot = document.querySelector(`.overdueShot`)
 let elemEditId = 0;
+function updateShot() {
+    const validTasks = taskContainer.filter(task => !rezrevDeleteId.includes(task.id));
+    totalShot.textContent = validTasks.length;
+    activeShot.textContent = validTasks.filter(task => task.taskStatus === "Active").length;
+    completadShot.textContent = validTasks.filter(task => task.taskStatus === "Completed").length;
+    overdueShot.textContent = validTasks.filter(task => task.taskStatus === "Overdue").length;
+}
+
 const members = [
     {
         userID: 1,
@@ -273,10 +281,6 @@ const taskContainer = [
     }
 ];
 
-
-
-
-
 const members_list = document.querySelectorAll(`.Members_list`);
 function members_Creator(members_object, status = null) {
     members_list.forEach(elem => {
@@ -298,17 +302,17 @@ function members_Creator(members_object, status = null) {
     });
 }
 
-
-
 function taskCreator(taskObject = [], main = taskBox) {
     main.innerHTML = "";
     if (!Array.isArray(taskObject) || taskObject.length < 1) {
         main.innerHTML = "<h1>No data available</h1>";
+        updateShot();
         return;
     }
     const newTaskFilter = taskObject.filter(task => !rezrevDeleteId.includes(task.id))
     if (!Array.isArray(newTaskFilter) || newTaskFilter.length < 1) {
         main.innerHTML = "<h1>No data available</h1>";
+        updateShot();
         return;
     }
     for (let a = 0; a < newTaskFilter.length; a++) {
@@ -405,6 +409,7 @@ function taskCreator(taskObject = [], main = taskBox) {
             taskStat(task.id, newTaskFilter)
         }
     })
+    updateShot();
     eventMeneger(newTaskFilter, main);
 }
 
@@ -451,8 +456,6 @@ function eventMeneger(data, main) {
         }
     })
 
-
-
     chek.forEach(chekbox => {
         chekbox.onclick = function () {
             const vijak = event.currentTarget.checked
@@ -486,6 +489,7 @@ function deleteTask(ID, data) {
         return user.id != ID;
     });
     taskCreator(new_Data);
+    updateShot();
 }
 
 function generator(status = "Total", main) {
@@ -550,7 +554,7 @@ function task_developer() {
         box.classList?.add("activ");
         text.classList?.add(`activ`)
     } else {
-        box.classList?.remove("activ");
+        box.classList.remove("activ");
         text.classList?.remove(`activ`)
     }
 }
@@ -589,7 +593,6 @@ function toggleModal(modal, data) {
         };
     });
 }
-
 
 function SaveMenager(data, item) {
     const pay = event?.currentTarget?.getAttribute(`pay`)
@@ -639,9 +642,8 @@ function SaveMenager(data, item) {
         members_Creator(members)
         item?.querySelector(`form`)?.reset()
     } else if (pay === "task") {
-        
-        item?.querySelector(`form`)?.reset()
+      
+        item?.classList?.remove("activ")
+        document.querySelector(`html`)?.classList?.remove("activ")
     }
-    item?.classList?.remove("activ")
-    document.querySelector(`html`)?.classList?.remove("activ")
 }
